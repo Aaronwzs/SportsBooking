@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="sportsbooking">
+    <table name="users">
+        <column name="id">1</column>
+        <column name="name">Admin</column>
+        <column name="email">admin@example.com</column>
+        <column name="email_verified_at">2024-08-24 12:00:00</column>
+        <column name="usertype">admin</column>
+        <column name="created_at">2024-08-24 12:00:00</column>
+    </table>
+    <table name="users">
+        <column name="id">2</column>
+        <column name="name">User</column>
+        <column name="email">user@example.com</column>
+        <column name="email_verified_at">2024-08-25 12:00:00</column>
+        <column name="usertype">user</column>
+        <column name="created_at">2024-08-25 12:00:00</column>
+    </table>
+</database>

@@ -3,8 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+
+use App\Http\Controllers\XmlController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,10 +32,37 @@ Route::get('/home', [HomeController::class,'index'])->middleware('auth')->name('
 Route::get('post',[HomeController::class,'post'])->middleware(['auth','admin']);
 
 
+
+Route::get('/fetch-xml', [XmlController::class, 'fetchXml']);
+
+
+Route::get('/admin/reports', [XmlController::class, 'showReport'])->name('admin.reports');
+
+
+
+// User Routes
+
+Route::get('/booking', [HomeController::class, 'product'])->middleware('auth')->name('booking.product');
+Route::get('/deals', [HomeController::class, 'promotion'])->middleware('auth')->name('deals.promotion');
+
+
+// Admin Routes
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/users', [AdminController::class, 'manageUsers'])->name('users');
+    Route::get('/reports', [AdminController::class, 'reports'])->name('reports');
+});
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 
 require __DIR__.'/auth.php';
