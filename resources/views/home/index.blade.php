@@ -10,7 +10,7 @@
 @section('navigation')
 
 
-<x-nav-link :href="route('booking.product')" :active="request()->routeIs('booking.product')">
+<x-nav-link :href="route('booking.book')" :active="request()->routeIs('booking.book')">
     {{ __('Product') }}
 </x-nav-link>
 <x-nav-link :href="route('deals.promotion')" :active="request()->routeIs('deals.promotion')">
