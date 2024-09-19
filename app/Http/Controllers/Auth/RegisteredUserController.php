@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'usertype' => ['required', 'in:admin,user'], 
+            'g-recaptcha-response' => 'required|captcha',
             
         ]);
 

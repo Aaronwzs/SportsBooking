@@ -8,6 +8,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\XmlController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use Arcanedev\NoCaptcha\Rules\CaptchaRule;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,10 @@ use App\Http\Controllers\BookController;
 Route::get('/', function () {
     return view('home.index');
 });
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
