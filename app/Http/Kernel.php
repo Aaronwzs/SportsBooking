@@ -64,5 +64,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'isAdmin' => \App\Http\Middleware\IsAdmin::class,
+        'web' => [\App\Http\Middleware\IdleTimeout::class,],
+        'api' => [\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,'throttle:api',\Illuminate\Routing\Middleware\SubstituteBindings::class,],
     ];
+    
 }
