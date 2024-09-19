@@ -15,6 +15,9 @@
     <x-nav-link :href="route('admin.reports')" :active="request()->routeIs('admin.reports')">
         {{ __('Reports') }}
     </x-nav-link>
+    <x-nav-link :href="route('admin.booking')" :active="request()->routeIs('admin.booking')">
+        {{ __('Booking List') }}
+    </x-nav-link>
 @endsection
 
 @section('content')
