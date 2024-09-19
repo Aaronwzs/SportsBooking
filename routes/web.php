@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\XmlController;
 
 /*
@@ -51,8 +51,13 @@ Route::get('/deals', [HomeController::class, 'promotion'])->middleware('auth')->
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/users', [AdminController::class, 'manageUsers'])->name('users');
     Route::get('/reports', [AdminController::class, 'reports'])->name('reports');
-});
+    Route::get('/booking', [AdminController::class, 'booking'])->name('booking'); //this is for booking list
+    Route::get('/bookings/xml', [BookingController::class, 'generateXML']);
+    
+});     
 
+Route::post('/booking/approve/{id}', [BookingController::class, 'approve'])->name('approve.booking');
+Route::post('/booking/reject/{id}', [BookingController::class, 'reject'])->name('reject.booking');
 
 
 
