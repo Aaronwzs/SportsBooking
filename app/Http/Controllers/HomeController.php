@@ -60,5 +60,11 @@ class HomeController extends Controller
     {
         return view('deals.promotion'); // Create this view
     }
+
+    public function book()
+    {
+        return view('booking.book'); // Create this view
+    }
+
     
 }

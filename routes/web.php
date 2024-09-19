@@ -43,6 +43,12 @@ Route::get('/admin/reports', [XmlController::class, 'showReport'])->name('admin.
 // User Routes
 
 Route::get('/booking', [HomeController::class, 'product'])->middleware('auth')->name('booking.product');
+Route::get('/booking', [BookingController::class, 'index'])->name('booking.book');
+Route::get('/book', [BookController::class, 'index'])->name('book.form');
+Route::post('/book', [BookController::class, 'submit'])->name('book.submit');
+Route::get('/booking', [BookController::class, 'index'])->name('booking.book');
+Route::get('/my-bookings', [BookController::class, 'userBookings'])->name('booking.mybooking');
+Route::delete('/booking/cancel/{id}', [BookController::class, 'cancelBooking'])->name('booking.cancel');
 Route::get('/deals', [HomeController::class, 'promotion'])->middleware('auth')->name('deals.promotion');
 
 
