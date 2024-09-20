@@ -19,7 +19,8 @@
         async function loadXMLAndXSLT() {
             try {
                 // Fetch the XML and XSLT files
-                const xmlResponse = await fetch('/fetch-xml');
+                //const xmlResponse = await fetch('/fetch-xml');
+                const xmlResponse = await fetch('/xml/users.xml');
                 const xsltResponse = await fetch('/xsl/users.xslt');
 
                 if (!xmlResponse.ok || !xsltResponse.ok) {
