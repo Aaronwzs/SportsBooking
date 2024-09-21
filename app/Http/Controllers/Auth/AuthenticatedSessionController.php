@@ -9,9 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Http;
-
-use Anhskohbo\NoCaptcha\Rules\CaptchaRule;
+use App\Models\LoginActivity; // Ensure you import the LoginActivity model
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,19 +26,21 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        
         $request->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
-        
-
-
         $request->authenticate();
-
         $request->session()->regenerate();
+
+        // Create a new login activity record
+        LoginActivity::create([
+            'user_id' => Auth::id(),
+            'ip_address' => $request->ip(),
+            'login_at' => now(),
+        ]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -53,7 +53,6 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

@@ -11,6 +11,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+     protected $listen = [
+        \Illuminate\Auth\Events\Login::class => [
+            \App\Listeners\LogLoginActivity::class,
+        ],
+    ];
+    
     public function register()
     {
         //
